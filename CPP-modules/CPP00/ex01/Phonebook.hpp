@@ -21,7 +21,6 @@ class Phonebook
     	void add();
     	void search();
 		void print(Contact contact);
-		void print_val(void);
 		void view_contacts(Contact contacts[8]);
 		Phonebook() : _i(0) {}
 	

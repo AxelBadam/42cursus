@@ -1,0 +1,17 @@
+iostream
+fstream
+
+.is_open
+getline
+.find
+.compare
+.length
+.erase
+.insert
+.close
+
+NOTTEST
+
+
+sdfsdfsfsffffsefesrTEST
+NOTTEST
