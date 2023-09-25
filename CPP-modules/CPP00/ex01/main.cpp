@@ -15,9 +15,10 @@ int	main(void)
 			pb.search();
 		if (std::cin.eof())
 		{
-			std::cout << std::endl;
+			std::cout << "\nThanks!" << std::endl;
 			return (0);
 		}
 	}
+	std::cout << "Thanks!" << std::endl;
 	return (0);
 }

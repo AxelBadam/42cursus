@@ -1,9 +1,8 @@
-#include "Phonebook.hpp"
 #include "Contact.hpp"
 
 int		Contact::hasData() const
 {
-	return !_fname.empty();	
+	return !_fname.empty();
 }
 
 void	Contact::set_fname(std::string str)

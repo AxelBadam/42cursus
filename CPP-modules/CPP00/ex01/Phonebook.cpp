@@ -1,10 +1,9 @@
-#include "Contact.hpp"
 #include "Phonebook.hpp"
 
-static std::string truncate(std::string const&str, int max_width)
+static std::string truncate(std::string const&str, int width)
 {
 	if (str.length() > 10)
-		return str.substr(0, max_width - 1) + ".";
+		return str.substr(0, width - 1) + ".";
 	return str;
 }
 
@@ -42,13 +41,11 @@ void	Phonebook::search(void)
 	
 	view_contacts(_contacts);
 	std::cout << "Enter index: ";
-	if (std::getline(std::cin, str) && str >= "0" && str <= "7")
-		{
-			i = std::atoi(str.c_str());
-   			if (i >= 0 && i <= 7 && _contacts[i].hasData())
-       			print(_contacts[i]);
-		}
-	else
+	std::getline(std::cin, str);
+	i = std::atoi(str.c_str());
+	if (i >= 0 && i <= 7 && _contacts[i].hasData() && (str >= "0" && str <= "7"))
+		print(_contacts[i]);
+	else if (!std::cin.eof())
 		std::cout << "Invalid or empty index!" << std::endl;
 }
 
@@ -80,7 +77,7 @@ void	Phonebook::add(void)
 	str = "";
 	while (!std::cin.eof() && str == "")
 	{
-		std::cout << "Enter phone number ";
+		std::cout << "Enter phone number: ";
 		if (std::getline(std::cin, str) && str != "")
 			_contacts[_i % 8].set_phone(str);
 	}
