@@ -1,5 +1,5 @@
 #include "Harl.hpp"
-
+#include <iostream>
 
 void Harl::debug(void) const
 {
@@ -36,9 +36,16 @@ void Harl::error(void) const
 
 void Harl::complain(std::string level)
 {
+	const	pointer_func complains[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	debug();
-	info();
-	warning();
-	error();
+	for (int i = 0; i < 4; i++)
+	{
+		if (levels[i] == level)
+		{
+			(this->*complains[i])();
+			break ;
+		}
+	}
+
 }

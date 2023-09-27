@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	int N = 5;
+	const int N = 6;
 
 	Zombie *z = zombieHorde(N, "EsaPekka");
 	for (int i = 0; i < N; i++)

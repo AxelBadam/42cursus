@@ -1,6 +1,6 @@
 #ifndef HARL_H
 #define HARL_H
-#include <string> 
+#include <iostream>
 
 class Harl
 {
@@ -12,5 +12,7 @@ class Harl
 		void warning(void) const;
 		void error(void) const;
 };
+
+typedef void (Harl::*pointer_func)(void) const;
 
 #endif

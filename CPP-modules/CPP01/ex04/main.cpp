@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 
-
 int SearchAndReplace(std::ifstream &infile, std::ofstream &outfile, std::string toFind, std::string toInsert)
 {
 	std::string line;
@@ -23,14 +22,13 @@ int main(int ac, char **av)
 {
 	if (ac != 4)
 	{
-		std::cout << "Usage: " << av[0] << " <input_file> <to_find> <to_insert>" << std::endl;
+		std::cerr << "Usage: " << av[0] << " <input_file> <to_find> <to_insert>" << std::endl;
 		return 1;
 	}
-
 	std::ifstream infile(av[1]);
 	if (!infile.is_open())
 	{
-		std::cout << "Error: can't open Infile\n";
+		std::cerr << "Error: can't open Infile\n";
 		return 1;
 	}
 	std::string end = ".replace";
