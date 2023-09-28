@@ -14,5 +14,6 @@ class Harl
 };
 
 typedef void (Harl::*t_func)(void) const;
+enum complaints {DEBUG, INFO, WARNING, ERROR};
 
 #endif

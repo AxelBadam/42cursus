@@ -1,4 +1,4 @@
-NAME := HumangsAndClubs
+NAME := human
 CC := c++
 FLAGS := -std=c++98 -Wall -Wextra -Werror
 SRC := main.cpp Weapon.cpp HumanA.cpp HumanB.cpp

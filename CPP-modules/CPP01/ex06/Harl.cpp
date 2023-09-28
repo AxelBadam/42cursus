@@ -47,5 +47,4 @@ void Harl::complain(std::string level)
 			return ;
 		}
 	}
-	std::cerr << "Not a valid level." << std::endl;
 }
