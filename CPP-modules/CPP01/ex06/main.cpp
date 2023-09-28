@@ -8,13 +8,12 @@ int main(int ac, char **av)
 		return 1;
 	}
     Harl harl;
-	int filter_lvl = 0;
 	const std::string lvl(av[1]);
 	const std::string strs[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int filter_lvl = 0;
 
 	while (lvl.compare(strs[filter_lvl]) && filter_lvl < 4)
 		filter_lvl++;
-	//std::cout << filter_lvl << "\n";
 	switch (filter_lvl)
 	{
 		case DEBUG:
@@ -36,7 +35,7 @@ int main(int ac, char **av)
 			harl.complain("ERROR");
 			break;
 		default:
-			std::cerr << "Invalid filter level" << std::endl;
+			std::cerr << "Enter a valid level: DEBUG / INFO / WARNING / ERROR" << std::endl;
 	}
     return 0;
 }
