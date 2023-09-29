@@ -6,7 +6,7 @@ int SearchAndReplace(std::ifstream& infile, std::ofstream& outfile, std::string 
 {
     std::string line;
 
-    while (getline(infile, line))
+    while (getline(infile, line) && toFind.compare(""))
     {
         int i = line.find(toFind);
         while (i != -1)
