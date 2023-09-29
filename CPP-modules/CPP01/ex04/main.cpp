@@ -1,22 +1,25 @@
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
-int SearchAndReplace(std::ifstream &infile, std::ofstream &outfile, std::string toFind, std::string toInsert)
+int SearchAndReplace(std::ifstream& infile, std::ofstream& outfile, std::string toFind, std::string toInsert)
 {
-	std::string line;
-	size_t		i;
+    std::string line;
 
-	while (getline(infile, line))
-	{
-		while ((i = line.find(toFind)) != std::string::npos && toFind.compare(""))
-		{
+    while (getline(infile, line))
+    {
+        int i = line.find(toFind);
+        while (i != -1)
+        {
 			line.erase(i, toFind.length());
 			line.insert(i, toInsert);
-		}
-		outfile << line << std::endl;
-	}
-	return 1;
+            i = line.find(toFind, i + toInsert.length());
+        }
+        outfile << line << std::endl;
+    }
+    return 1;
 }
+
 
 int main(int ac, char **av)
 {
