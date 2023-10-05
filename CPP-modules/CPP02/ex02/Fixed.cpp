@@ -38,8 +38,15 @@ Fixed Fixed::operator*(const Fixed &other) const{
 	return toFloat() * other.toFloat();
 }
 
-Fixed Fixed::operator/(const Fixed &other) const{
-	return toFloat() / other.toFloat();
+Fixed Fixed::operator/(const Fixed &other) const
+{
+	if (other._val != 0)
+		return toFloat() / other.toFloat();
+	else
+	{
+		std::cout << "Error: division by zero" << std::endl;
+		return Fixed();
+	}
 }
 
 bool Fixed::operator<(const Fixed& other) const {
@@ -88,9 +95,32 @@ Fixed Fixed::operator--(int){
 	return result;
 }
 
+Fixed& Fixed::min(Fixed &fixed1, Fixed &fixed2){
+	if (fixed1._val < fixed2._val)
+		return fixed1;
+	return fixed2;
+}
+
+const Fixed& Fixed::min(const Fixed &fixed1, const Fixed &fixed2){
+	if (fixed1._val < fixed2._val)
+		return fixed1;
+	return fixed2;
+}
+
+Fixed& Fixed::max(Fixed &fixed1, Fixed &fixed2){
+	if (fixed1._val > fixed2._val)
+		return fixed1;
+	return fixed2;
+}
+
+const Fixed& Fixed::max(const Fixed &fixed1, const Fixed &fixed2){
+	if (fixed1._val > fixed2._val)
+		return fixed1;
+	return fixed2;
+}
+
 Fixed::~Fixed(){}
 
-/*
 int Fixed::getRawBits( void ) const{
 	std::cout << "getRawBits member function called" << std::endl;
 	return _val;
@@ -99,4 +129,4 @@ int Fixed::getRawBits( void ) const{
 void Fixed::setRawBits( int const raw ){
 	std::cout << "setRawBits member function called" << std::endl;
 	_val = raw;
-}*/
+}

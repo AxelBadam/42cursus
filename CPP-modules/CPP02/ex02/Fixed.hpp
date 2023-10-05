@@ -29,13 +29,16 @@ class Fixed
 		Fixed &operator--(void);
 		Fixed operator--(int);
 
-
 		~Fixed();
 
 		int 	toInt(void) const;
 		float 	toFloat(void) const;
-		/*int 	getRawBits( void ) const;
-		void 	setRawBits( int const raw );*/
+		int 	getRawBits( void ) const;
+		void 	setRawBits( int const raw );
+		static Fixed 		&min(Fixed &fixed1, Fixed &fixed2);
+		const static Fixed 	&min(const Fixed &fixed1, const Fixed &fixed2);
+		static Fixed		&max(Fixed &fixed1, Fixed &fixed2);
+		const static Fixed 	&max(const Fixed &fixed1, const Fixed &fixed2);
 
 	private:
 		int				 _val;

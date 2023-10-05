@@ -23,20 +23,20 @@ Fixed &Fixed::operator=(const Fixed &other){
 	return *this;
 }
 
-Fixed::~Fixed(){
-	std::cout << "Destructor called" << std::endl;
+float Fixed::toFloat(void) const{
+	return static_cast<float>(_val) / (1 << _fb); 
 }
 
 int Fixed::toInt(void) const{
 	return roundf(toFloat());
 }
 
-float Fixed::toFloat(void) const{
-	return (static_cast<float>(_val) / (1 << _fb)); 
-}
-
 std::ostream& operator<<(std::ostream &out, const Fixed &fixed){
 	return out << fixed.toFloat();
+}
+
+Fixed::~Fixed(){
+	std::cout << "Destructor called" << std::endl;
 }
 
 /*
