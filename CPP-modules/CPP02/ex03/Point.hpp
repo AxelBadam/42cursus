@@ -8,20 +8,18 @@ class Point
 		Point();
 		Point(const Fixed &x, const Fixed &y);
 		Point(Point &point);
-		Point &operator=(const Point &other);
 		~Point();
-		bool isInside(Point &A, Point &B, Point &C, Point &toCheck);
-		float Point::area(Point &A, Point &B, Point &C);
-
-		Fixed &getX() const;
-		Fixed &getY() const;
+		Point &operator=(const Point &other);
 
 
+		Fixed const&getX() const;
+		Fixed const&getY() const;
 
 	private:
-		const Fixed _x;
-		const Fixed _y;
-
+		Fixed const _x;
+		Fixed const _y;
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif

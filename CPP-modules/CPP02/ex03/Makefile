@@ -1,7 +1,7 @@
-NAME := fixed02
+NAME := fixed03
 CC := c++
 FLAGS := -std=c++98 -Wall -Wextra -Werror
-SRC := main.cpp Fixed.cpp
+SRC := main.cpp Fixed.cpp Point.cpp
 OBJ := $(SRC:.cpp=.o)
 
 .PHONY: all clean fclean re

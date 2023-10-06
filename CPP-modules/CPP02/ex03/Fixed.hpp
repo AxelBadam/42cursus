@@ -10,7 +10,7 @@ class Fixed
 		Fixed(const int n);
 		Fixed(const Fixed& f);
 		Fixed(const float n);
-		//Fixed &operator=(const Fixed &other);
+		Fixed &operator=(const Fixed &other);
 	
 		bool operator<(const Fixed &other) const;
 		bool operator>(const Fixed &other) const;
