@@ -9,6 +9,8 @@ Fixed::Fixed(const float n) : _val(std::roundf(n * (1 << _fb))){}
 
 Fixed::Fixed(const Fixed& other) : _val(other._val){}
 
+Fixed::~Fixed(){}
+
 int Fixed::toInt(void) const{
 	return roundf(toFloat());
 }
@@ -118,8 +120,6 @@ const Fixed& Fixed::max(const Fixed &fixed1, const Fixed &fixed2){
 		return fixed1;
 	return fixed2;
 }
-
-Fixed::~Fixed(){}
 
 int Fixed::getRawBits( void ) const{
 	std::cout << "getRawBits member function called" << std::endl;

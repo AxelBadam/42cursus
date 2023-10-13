@@ -16,3 +16,5 @@ class Fixed
 		int _val;
 		static const int _n = 8;
 };
+
+#endif

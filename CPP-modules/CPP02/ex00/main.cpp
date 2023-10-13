@@ -8,6 +8,10 @@ int main(void)
 	Fixed b( a );
 	Fixed c;
 
+	/*a.setRawBits(2);
+	b.setRawBits(3);
+	c.setRawBits(4);*/
+	
 	c = b;
 
 	std::cout << a.getRawBits() << std::endl;

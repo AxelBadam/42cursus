@@ -15,8 +15,8 @@ class Fixed
 
 		int 	toInt(void) const;
 		float 	toFloat(void) const;
-		/*int 	getRawBits( void ) const;
-		void 	setRawBits( int const raw );*/
+		int 	getRawBits( void ) const;
+		void 	setRawBits( int const raw );
 
 	private:
 		int				 _val;

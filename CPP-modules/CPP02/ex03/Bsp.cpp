@@ -14,21 +14,21 @@ static bool point_on_line(Point const&a, Point const&b, Point const&point)
 	if ((b.getX() - a.getX()) == 0) // vertical line, either on the line or off limits
 		return point.getX() == a.getX(); 
 	const Fixed slope = (b.getY() - a.getY()) / (b.getX() - a.getX());
-	const Fixed intercept = a.getY() - slope * a.getX();
-	return point.getY() == slope * point.getX() + intercept;
+	const Fixed y_intr = a.getY() - slope * a.getX(); 
+	return point.getY() == slope * point.getX() + y_intr;
 }
 
 static Fixed area(Point const&a, Point const&b, Point const&c)
 {
    return my_abs(a.getX() * (b.getY()-c.getY())
 	+ b.getX() * (c.getY()-a.getY())
-	+ c.getX() * (a.getY()-b.getY())) / 2;
-	
+	+ c.getX() * (a.getY()-b.getY())) / 2;	
 }
 
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
 	const float acc = 0.01f;
+
     /* Calculate area of triangle abc, pbc, pac, pab */
   	Fixed tri = area (a, b, c);
    	Fixed a1 = area (point, b, c);

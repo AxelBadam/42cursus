@@ -11,10 +11,8 @@ class Point
 		~Point();
 		Point &operator=(const Point &other);
 
-
 		Fixed const&getX() const;
 		Fixed const&getY() const;
-
 	private:
 		Fixed const _x;
 		Fixed const _y;
