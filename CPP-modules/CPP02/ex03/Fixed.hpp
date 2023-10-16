@@ -5,7 +5,7 @@
 
 class Fixed
 {
-	public:
+	public:   
 		Fixed();
 		Fixed(const int n);
 		Fixed(const Fixed& f);

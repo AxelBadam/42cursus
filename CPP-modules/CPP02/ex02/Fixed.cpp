@@ -1,8 +1,9 @@
 #include <cmath>
+
 #include "Fixed.hpp"
 
 Fixed::Fixed() : _val(0){}
-
+  
 Fixed::Fixed(const int n) : _val(n << _fb){}
 
 Fixed::Fixed(const float n) : _val(std::roundf(n * (1 << _fb))){}
