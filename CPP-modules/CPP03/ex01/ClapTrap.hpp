@@ -9,13 +9,14 @@ class ClapTrap
 		ClapTrap(const ClapTrap &CT);
 		~ClapTrap();
 		ClapTrap &operator=(const ClapTrap &CT);
+		
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		int  getAtck();
 		int  getE();
 
-	private:
+	protected:
 		std::string _name;
 		int			_hp;
 		int			_e;

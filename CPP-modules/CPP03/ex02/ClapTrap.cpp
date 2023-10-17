@@ -1,26 +1,18 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 #include <iostream>
 
 ClapTrap::ClapTrap(std::string name) 
 {
 	_name = name;
-	std::cout << _name << " was created\n";
-	_hp = 10;
-	_e = 10;
-	_atck = 0;
-}
-
-ClapTrap::ClapTrap(const ClapTrap &CT)
-{
-	_name = CT._name;
-	_atck = CT._atck;
-	_e = CT._e;
-	_hp = CT._hp;
-	std::cout << "ClapTrap copy constructor called" << std::endl;
+	std::cout << _name << " ClapTrap was created\n";
+	_hp = 100;
+	_e = 50;
+	_atck = 20;
 }
 
 ClapTrap::~ClapTrap(){
-	std::cout << _name << " was destroyed\n";
+	std::cout << _name << " ClapTrap was destroyed" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &CT)
@@ -31,6 +23,15 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &CT)
 	_atck = CT._atck;
 	std::cout << "ClapTrap copy assignment operator called" << std::endl;
 	return *this;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &CT)
+{
+	_name = CT._name;
+	_atck = CT._atck;
+	_e = CT._e;
+	_hp = CT._hp;
+	std::cout << "ClapTrap copy constructor called" << std::endl;
 }
 
 void  ClapTrap::attack(const std::string& target)
@@ -55,7 +56,6 @@ void ClapTrap::takeDamage(unsigned int amount)
 			_hp = 0;
 			std::cout << _name << " is done!" << std::endl;
 		}
-			
 		else
 			_hp -= amount;
 	}

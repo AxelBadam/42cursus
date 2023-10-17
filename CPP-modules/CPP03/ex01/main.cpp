@@ -1,15 +1,19 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void)
 {
-	ClapTrap Jouni("Jouni");
-	ClapTrap Markus("Markus");
+	ScavTrap Markus("Markus");
+	ScavTrap Jouni("Jouni");
+
+	Markus.guardGate();
 
 	for (int i = 0; i < 11; i++)
 		{
 			Jouni.attack("Markus");
 			if (Jouni.getE() > 0)
 				Markus.takeDamage(Jouni.getAtck());
-			Markus.beRepaired(1);
+			Markus.beRepaired(10);
 		}
+
 }

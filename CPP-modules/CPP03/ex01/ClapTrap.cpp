@@ -1,13 +1,18 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 #include <iostream>
 
 ClapTrap::ClapTrap(std::string name) 
 {
 	_name = name;
 	std::cout << _name << " was created\n";
-	_hp = 10;
-	_e = 10;
-	_atck = 0;
+	_hp = 100;
+	_e = 50;
+	_atck = 20;
+}
+
+ClapTrap::~ClapTrap(){
+	std::cout << _name << " ClapTrap was destroyed" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &CT)
@@ -17,10 +22,6 @@ ClapTrap::ClapTrap(const ClapTrap &CT)
 	_e = CT._e;
 	_hp = CT._hp;
 	std::cout << "ClapTrap copy constructor called" << std::endl;
-}
-
-ClapTrap::~ClapTrap(){
-	std::cout << _name << " was destroyed\n";
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &CT)
@@ -55,7 +56,6 @@ void ClapTrap::takeDamage(unsigned int amount)
 			_hp = 0;
 			std::cout << _name << " is done!" << std::endl;
 		}
-			
 		else
 			_hp -= amount;
 	}
