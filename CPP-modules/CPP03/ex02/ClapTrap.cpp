@@ -2,6 +2,15 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
+ClapTrap::ClapTrap()
+{
+	_name = "default";
+	std::cout << _name << " ClapTrap was created\n";
+	_hp = 100;
+	_e = 50;
+	_atck = 20;
+}
+
 ClapTrap::ClapTrap(std::string name) 
 {
 	_name = name;
@@ -51,7 +60,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	if (_hp > 0)
 	{
 		std::cout << _name << " takes " << amount << " damage!" << std::endl;
-		if (_hp - amount <= 0)
+		if ((int)(_hp - amount) <= 0)
 		{
 			_hp = 0;
 			std::cout << _name << " is done!" << std::endl;

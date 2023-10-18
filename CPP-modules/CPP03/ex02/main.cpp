@@ -8,10 +8,15 @@ int main(void)
 	ScavTrap Jouni("Jouni");
 	ScavTrap cpy(Markus);
 	FragTrap Jesse("Jesse");
+	FragTrap asd;
+
+	std::cout << std::endl;
 
 	Markus.guardGate();
 	cpy.guardGate();
 	Jesse.highFivesGuys();
+
+	std::cout << std::endl;
 
 	for (int i = 0; i < 11; i++)
 		{
@@ -21,4 +26,13 @@ int main(void)
 			Markus.beRepaired(10);
 		}
 
+	std::cout << std::endl;
+
+	for (int i = 0; i < 6; i++)
+	{
+		Jesse.takeDamage(30);
+		Jesse.beRepaired(10);
+	}		
+	
+	std::cout << std::endl;	
 }

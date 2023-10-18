@@ -2,6 +2,14 @@
 
 #include "FragTrap.hpp"
 
+FragTrap::FragTrap() : ClapTrap()
+{
+	std::cout << _name << " FragTrap was created" << std::endl;
+	_hp = 100;
+	_e = 100;
+	_atck = 30;
+}
+
 FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 {
 	std::cout << _name << " FragTrap was created" << std::endl;

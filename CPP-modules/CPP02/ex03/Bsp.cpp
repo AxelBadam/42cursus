@@ -7,7 +7,6 @@ static Fixed my_abs(Fixed const&x)
 	return x;
 }
 
-
 static bool point_on_line(Point const&a, Point const&b, Point const&point)
 {
 	if (a.getX() == b.getX() && a.getY() == b.getY()) // check if same point

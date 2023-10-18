@@ -1,5 +1,13 @@
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap() : ClapTrap()
+{
+	_hp = 100;
+	_e = 50;
+	_atck = 20;
+	std::cout << _name << " ScavTrap was created" << std::endl;
+}
+
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	_hp = 100;
@@ -8,13 +16,13 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	std::cout << _name << " ScavTrap was created" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &SC) : ClapTrap(SC._name)
+ScavTrap::ScavTrap(const ScavTrap &ST) : ClapTrap(ST._name)
 {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
-	_hp = SC._hp;
-	_e = SC._e;
-	_atck = SC._atck;
-	_name = SC._name;
+	_hp = ST._hp;
+	_e = ST._e;
+	_atck = ST._atck;
+	_name = ST._name;
 }
 ScavTrap::~ScavTrap(){
 	std::cout << _name << " ScavTrap was destroyed" << std::endl;

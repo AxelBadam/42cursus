@@ -4,10 +4,15 @@
 int main(void)
 {
 	ScavTrap Markus("Markus");
-	ScavTrap Jouni("Jouni");
+	ScavTrap Copy("Jouni");
+	ScavTrap Jouni(Copy);
+	ScavTrap asd;
+
+	std::cout << std::endl;
 
 	Markus.guardGate();
-
+	std::cout << std::endl;
+	
 	for (int i = 0; i < 11; i++)
 		{
 			Jouni.attack("Markus");
@@ -15,5 +20,4 @@ int main(void)
 				Markus.takeDamage(Jouni.getAtck());
 			Markus.beRepaired(10);
 		}
-
 }
