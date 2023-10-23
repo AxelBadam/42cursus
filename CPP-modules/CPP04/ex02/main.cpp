@@ -44,6 +44,10 @@ int main()
 	std::cout << dog->getIdea(0) << std::endl;
 	std::cout << dog2.getIdea(0) << std::endl;
 
+	std::cout << "-----------------------------" << std::endl;
+
+	/*Animal Jay;
+	Jay.makeSound();*/
 	
 	return 0;
 }
