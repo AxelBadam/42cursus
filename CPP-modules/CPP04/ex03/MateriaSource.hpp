@@ -11,8 +11,12 @@ public:
     virtual ~MateriaSource();
     MateriaSource &operator=(const MateriaSource &source);
 
+	virtual void learnMateria(AMateria*);
+	virtual AMateria* createMateria(std::string const & type);
+	AMateria* getMats(int i) const;
+
 private:
-	AMateria *materias[4];
+	AMateria *mats[4];
 };
 
 #endif
