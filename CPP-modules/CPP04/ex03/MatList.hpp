@@ -6,9 +6,15 @@
 class MatList
 {
 	public:
+		AMateria *mats;
+		MatList *next;
+		
+		MatList(AMateria *mat);
+		MatList(const MatList &list);
+		MatList();
+		~MatList();
+		MatList &operator=(const MatList &list);
+};
 
 
-	private:
-
-}
 #endif

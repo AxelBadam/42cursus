@@ -1,7 +1,7 @@
 NAME := interface
 CC := c++
 COMPILE_FLAGS := -std=c++98 -Wall -Wextra -Werror
-SRC := main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
+SRC := main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp MatList.cpp
 OBJ := $(SRC:.cpp=.o)
 
 .PHONY: all clean fclean re

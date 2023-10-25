@@ -3,6 +3,7 @@
 
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
+#include "MatList.hpp"
 
 class Character : public ICharacter
 {
@@ -22,6 +23,7 @@ class Character : public ICharacter
 	private:
 		AMateria *slot[4];
 		std::string name;
+		MatList *list;
 };
 
 #endif

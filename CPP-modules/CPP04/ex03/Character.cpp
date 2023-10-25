@@ -1,4 +1,6 @@
 #include "Character.hpp"
+#include "MatList.hpp"
+#include <iostream>
 
 Character::Character(std::string name) : name(name) 
 {
@@ -22,21 +24,47 @@ std::string const &Character::getName() const{
 
 void Character::equip(AMateria* mats)
 {
+	if (mats == NULL)
+		return;
 	for (int i = 0; i < 4; i++)
 	{
-		if (mats != NULL && slot[i] == NULL)
+		if (slot[i] == NULL)
+		{
 			slot[i] = mats;
+			return;
+		}		
+	}
+    // If all slots are occupied, add 'mats' to the linked list.
+	if (!list)
+    	list = new MatList(mats); // Create a new node with 'mats'
+	else
+	{
+		MatList *tmp = list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new MatList(mats);
 	}
 }
 
-void Character::unequip(int idx){
-
+void Character::use(int idx, ICharacter& target)
+{
+	if (idx > -1 && idx < 4 && slot[idx] != NULL)
+		slot[idx]->use(target);
 }
 
-void Character::use(int idx, ICharacter& target){
-
-}
-
-const AMateria AMateria::*getItem(int idx) const{
-
+void Character::unequip(int idx)
+{
+	if (idx > -1 && idx < 4 && slot[idx] != NULL)
+	{
+		if (!list)
+    		list = new MatList(slot[idx]); // Create a new node with 'mats'
+		else
+		{
+			MatList *tmp = list;
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = new MatList(slot[idx]);
+		}
+	slot[idx] = NULL;
+	}
 }
