@@ -22,7 +22,7 @@ WrongCat::WrongCat(const WrongCat &WrongCat){
 }
 
 void WrongCat::makeSound() const{
-	std::cout << "Meow." << std::endl;
+	std::cout << "Wrong Meow." << std::endl;
 }
 
 std::string WrongCat::getType() const{

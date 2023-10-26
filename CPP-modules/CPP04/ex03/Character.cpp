@@ -8,13 +8,38 @@ Character::Character(std::string name) : name(name)
 		slot[i] = NULL;
 }
 
-Character::Character(const Character &character){
+Character::Character(const Character &character)
+{
 	name = character.name;
+	for (int i = 0; i < 4; i++)
+			slot[i] = character.slot[i]->clone();	
+	list = character.list ? new MatList(*character.list) : NULL;
 }
-Character::~Character() {}
+Character::~Character() {
+	int i = 0;
+	while (i < 4)
+	{
+		if (slot[i])
+			delete slot[i];
+		i++;
+	}
+	if (list)
+		delete list;
+}
 
-Character &Character::operator=(const Character &character){
+Character &Character::operator=(const Character &character)
+{
 	name = character.name;
+	for (int i = 0; i < 4; i++)
+	{
+		if (slot[i])
+			delete slot[i];
+	}
+	for (int i = 0; i < 4; i++)
+			slot[i] = character.slot[i]->clone();
+	if (list)
+		delete list;
+	list = character.list ? new MatList(*character.list) : NULL;
 	return *this;
 }
 
@@ -57,7 +82,7 @@ void Character::unequip(int idx)
 	if (idx > -1 && idx < 4 && slot[idx] != NULL)
 	{
 		if (!list)
-    		list = new MatList(slot[idx]); // Create a new node with 'mats'
+    		list = new MatList(slot[idx]);
 		else
 		{
 			MatList *tmp = list;

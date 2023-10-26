@@ -8,11 +8,12 @@ class MateriaSource : public IMateriaSource
 public:
 	MateriaSource();
 	MateriaSource(const MateriaSource &source);
-    virtual ~MateriaSource();
+    ~MateriaSource();
     MateriaSource &operator=(const MateriaSource &source);
 
-	virtual void learnMateria(AMateria*);
-	virtual AMateria* createMateria(std::string const & type);
+	void learnMateria(AMateria*);
+
+	AMateria* createMateria(std::string const & type);
 	AMateria* getMats(int i) const;
 
 private:

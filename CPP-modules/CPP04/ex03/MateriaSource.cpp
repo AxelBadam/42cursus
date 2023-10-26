@@ -16,7 +16,8 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		delete mats[i];
+		if (mats[i])
+			delete mats[i];
 		mats[i] = NULL;
 	}
 }
@@ -30,6 +31,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &source)
 	}
 	return *this;
 }
+
 void MateriaSource::learnMateria(AMateria* materia)
 {
 	for (int i = 0; i < 4; i++)
@@ -40,6 +42,8 @@ void MateriaSource::learnMateria(AMateria* materia)
 			return;
 		}
 	}
+	if (materia)
+		delete materia;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)

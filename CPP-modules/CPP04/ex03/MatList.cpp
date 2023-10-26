@@ -10,19 +10,27 @@ MatList::MatList(AMateria *mat)
 
 MatList::~MatList() 
 {
-	delete mats;
-	delete next;
+	if (mats)
+		delete mats;
+	if (next)
+		delete next;
 	mats = NULL;
 	next = NULL;
 }
 
-MatList::MatList(const MatList &list) : mats(list.mats), next(list.next) {}
+MatList::MatList(const MatList &list)
+{
+	mats = list.mats ? list.mats->clone() : NULL; 
+	next = list.next ? new MatList(*list.next) : NULL;
+}
 
 MatList &MatList::operator=(const MatList &list)
 {
-	delete mats;
-	delete next;
-	mats = list.mats;
-	next = list.next;
+	if (mats)
+		delete mats;
+	if (next)
+		delete next;
+	mats = list.mats ? list.mats->clone() : NULL; 
+	next = list.next ? new MatList(*list.next) : NULL;
 	return *this;
 }

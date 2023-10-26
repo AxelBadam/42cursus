@@ -18,8 +18,6 @@ class Character : public ICharacter
 		virtual void unequip(int idx);
 		virtual void use(int idx, ICharacter &target);
 
-		//const AMateria *getItem(int idx) const;
-
 	private:
 		AMateria *slot[4];
 		std::string name;
