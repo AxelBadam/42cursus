@@ -6,14 +6,16 @@
 class MatList
 {
 	public:
-		AMateria *mats;
-		MatList *next;
-		
-		MatList(AMateria *mat);
-		MatList(const MatList &list);
 		MatList();
 		~MatList();
+		MatList(AMateria *mat);
+		MatList(const MatList &list);
+
 		MatList &operator=(const MatList &list);
+
+		AMateria *mats;
+		MatList *next;
+
 };
 
 

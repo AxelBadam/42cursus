@@ -59,15 +59,18 @@ void Character::equip(AMateria* mats)
 			return;
 		}		
 	}
-    // If all slots are occupied, add 'mats' to the linked list.
 	if (!list)
-    	list = new MatList(mats); // Create a new node with 'mats'
+	{
+		list = new MatList(mats);
+		//std::cout << list->mats->getType() << std::endl;
+	}
 	else
 	{
 		MatList *tmp = list;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new MatList(mats);
+		//std::cout << tmp->next->mats->getType() << std::endl;
 	}
 }
 
@@ -82,13 +85,17 @@ void Character::unequip(int idx)
 	if (idx > -1 && idx < 4 && slot[idx] != NULL)
 	{
 		if (!list)
-    		list = new MatList(slot[idx]);
+		{
+			list = new MatList(slot[idx]);
+		//	std::cout << list->mats->getType() << std::endl;
+		}
 		else
 		{
 			MatList *tmp = list;
 			while (tmp->next)
 				tmp = tmp->next;
 			tmp->next = new MatList(slot[idx]);
+		//	std::cout << tmp->next->mats->getType() << std::endl;
 		}
 	slot[idx] = NULL;
 	}
