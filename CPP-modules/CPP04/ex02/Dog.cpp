@@ -43,7 +43,6 @@ void Dog::setIdea(std::string idea, int i){
 	d->setIdea(idea, i);
 }
 
-Brain &Dog::getBrain()
-{
+Brain &Dog::getBrain(){
 	return *d;
 }

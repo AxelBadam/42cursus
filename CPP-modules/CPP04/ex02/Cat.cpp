@@ -28,7 +28,7 @@ Cat::Cat(const Cat &Cat){
 }
 
 void Cat::makeSound() const{
-	std::cout << "Woof." << std::endl;
+	std::cout << "Meow." << std::endl;
 }
 
 std::string Cat::getType() const{

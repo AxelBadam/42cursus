@@ -21,7 +21,7 @@ int main()
 	ICharacter* me = new Character("me");
 
 	AMateria* tmp;
-	
+
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 

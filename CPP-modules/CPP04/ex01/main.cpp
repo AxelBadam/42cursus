@@ -33,7 +33,7 @@ int main()
 	std::cout << "-----------------------------" << std::endl;
 
 	Dog *dog = new Dog();
-	dog->setIdea("I'm the best!", 0); 
+	dog->setIdea("I'm the best!", 0);
 	Dog dog2(*dog);
 
 	std::cout << dog << std::endl;
