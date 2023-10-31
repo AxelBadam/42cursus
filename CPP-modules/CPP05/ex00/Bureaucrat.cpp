@@ -2,14 +2,14 @@
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
 {
-	if (_grade < 1) throw HighException();
-	if (_grade > 150) throw LowException();
+	if (_grade < 1) throw GradeTooHighException();
+	if (_grade > 150) throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
-	if (_grade < 1) throw HighException();
-	if (_grade > 150) throw LowException();
+	if (_grade < 1) throw GradeTooHighException();
+	if (_grade > 150) throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &cpy){
@@ -39,12 +39,12 @@ int Bureaucrat::getGrade() const{
 
 void Bureaucrat::incrementG(){
 	_grade++;
-	if (_grade < 1) throw HighException();
-	if (_grade > 150) throw LowException();
+	if (_grade < 1) throw GradeTooHighException();
+	if (_grade > 150) throw GradeTooLowException();
 }
 
 void Bureaucrat::decrementG (){
 	_grade--;
-	if (_grade < 1) throw HighException();
-	if (_grade > 150) throw LowException();
+	if (_grade < 1) throw GradeTooHighException();
+	if (_grade > 150) throw GradeTooLowException();
 }

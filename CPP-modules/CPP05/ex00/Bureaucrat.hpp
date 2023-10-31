@@ -18,8 +18,8 @@ public:
 	void incrementG();
 	void decrementG();
 
-	class HighException : public std::exception {};
-	class LowException : public std::exception {};
+	class GradeTooHighException : public std::exception {};
+	class GradeTooLowException : public std::exception {};
 
 private:
 	const std::string _name;
