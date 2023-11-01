@@ -30,6 +30,16 @@ int main()
 	Bureaucrat G("Gangsta", 42);
 	std::cout << G << std::endl;
 
-	Bureaucrat W;
-	std::cout << W << std::endl;
+	Form F("Form", 2, 10);
+	std::cout << F << std::endl;
+
+	// exception thrown
+	G.signForm(F);
+	//should be signed
+	Bureaucrat bur("Jalmari", 2);
+	bur.signForm(F);
+
+	std::cout << F << std::endl;
+
+
 }
