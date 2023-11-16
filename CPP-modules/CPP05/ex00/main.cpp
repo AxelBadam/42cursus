@@ -7,8 +7,7 @@ int main()
 	}
 	catch(const std::exception& e){
 		std::cerr << "Exception caught: Constructor" << std::endl;
-	}
-
+	}	
 	try
 	{
 		Bureaucrat bur("Jalmari", 1);
@@ -17,8 +16,8 @@ int main()
 	catch(const std::exception& e){
 		std::cerr << "Exception caught: Decrement" << std::endl;
 	}
-
-	try{
+	try
+	{
 		Bureaucrat bur("Jalmari", 150);
 		bur.incrementG();
 	}

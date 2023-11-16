@@ -8,14 +8,15 @@ class Bureaucrat;
 
 class Form {
 public:
+	Form();
 	Form(std::string name, int gradeSign, int gradeExec);
     Form(const Form &cpy);
     ~Form();
     Form& operator=(const Form &other);
 
 	bool getSigned();
-	int getGradeS();
-	int getGradeE();
+	int getGradeSign();
+	int getGradeExec();
 	std::string getName();
 	
 	void beSigned(const Bureaucrat &bureaucrat);

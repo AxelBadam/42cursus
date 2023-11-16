@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+
 
 int main()
 {
@@ -28,15 +29,11 @@ int main()
 	Bureaucrat G("Gangsta", 42);
 	std::cout << G << std::endl;
 
-	Form F("Form", 2, 10);
-	std::cout << F << std::endl;
+	RobotomyRequestForm RoboForm("FunnyGuy");
 
-	// exception thrown
-	G.signForm(F);
+
+	Bureaucrat Jalmari("Jalmari", 2);
+	Jalmari.signForm(RoboForm);
+	Jalmari.executeForm(RoboForm);
 	
-	//should be signed
-	Bureaucrat bur("Jalmari", 2);
-	bur.signForm(F);
-
-	std::cout << F << std::endl;
 }

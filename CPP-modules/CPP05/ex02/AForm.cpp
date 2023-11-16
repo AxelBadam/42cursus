@@ -1,10 +1,10 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-Form::Form() : _name("default"), _signed(0), _gradeSign(150), _gradeExec(150) {}
+AForm::AForm() : _name("default"), _signed(0), _gradeSign(150), _gradeExec(150) {}
 
-Form::Form(std::string name, int gradeSign, int gradeExec) 
+AForm::AForm(std::string name, int gradeSign, int gradeExec) 
 : _name(name)
 , _signed(0)
 , _gradeSign(gradeSign)
@@ -14,7 +14,7 @@ Form::Form(std::string name, int gradeSign, int gradeExec)
 	if (_gradeSign > 150 || _gradeExec > 150) throw GradeTooLowException();
 }
 
-Form::Form(const Form &cpy)
+AForm::AForm(const AForm &cpy)
 : _name(cpy._name)
 , _signed(cpy._signed)
 , _gradeSign(cpy._gradeSign)
@@ -24,7 +24,7 @@ Form::Form(const Form &cpy)
 	if (_gradeSign > 150 || _gradeExec > 150) throw GradeTooLowException();
 }
 
-Form& Form::operator=(Form const &rhs)
+AForm& AForm::operator=(AForm const &rhs)
 {
     if (this != &rhs)
 	{
@@ -33,25 +33,25 @@ Form& Form::operator=(Form const &rhs)
     return (*this);
 }
 
-Form::~Form(){}
+AForm::~AForm(){}
 
-int Form::getGradeSign(){
+int AForm::getGradeS(){
 	return _gradeSign;
 }
 
-int Form::getGradeExec(){
+int AForm::getGradeE(){
 	return _gradeExec;
 }
 
-std::string Form::getName(){
+std::string AForm::getName(){
 	return _name;
 }
 
-bool Form::getSigned(){
+bool AForm::getSigned(){
 	return _signed;
 }
 
-void Form::beSigned(const Bureaucrat &bureaucrat)
+void AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() > _gradeSign)
 		throw GradeTooLowException();
@@ -59,14 +59,19 @@ void Form::beSigned(const Bureaucrat &bureaucrat)
 }
 
 
-std::ostream& operator<<(std::ostream &out, Form &form)
+std::ostream& operator<<(std::ostream &out, AForm &AForm)
 {
-	out << form.getName() << " with grade " << form.getGradeSign();
-	if (form.getSigned())
+	out << AForm.getName() << " with grade " << AForm.getGradeS();
+	if (AForm.getSigned())
 		out << " is signed,";
 	else
 		out << " is not signed,";
-	out << " exec grade is " << form.getGradeExec();
+	out << " exec grade is " << AForm.getGradeE();
 	
 	return out;
+}
+
+void execute (Bureaucrat const & executor) const
+{
+	// check grades and call executeIT
 }
