@@ -21,7 +21,7 @@ public:
 	void incrementG();
 	void decrementG();
 
-	void executeForm(AForm const &form);
+	void executeForm(AForm const &form) const;
 
 	void signAForm(AForm &form);
 

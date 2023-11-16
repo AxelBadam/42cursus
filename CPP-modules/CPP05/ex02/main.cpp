@@ -32,8 +32,8 @@ int main()
 	RobotomyRequestForm RoboForm("FunnyGuy");
 
 
-	Bureaucrat Jalmari("Jalmari", 2);
-	Jalmari.signForm(RoboForm);
-	Jalmari.executeForm(RoboForm);
-	
+	Bureaucrat GigaChad("GigaChad", 2);
+	GigaChad.signForm(RoboForm);
+	GigaChad.executeForm(RoboForm);
+
 }
