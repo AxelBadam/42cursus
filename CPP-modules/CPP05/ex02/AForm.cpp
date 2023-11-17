@@ -43,11 +43,11 @@ int AForm::getGradeE(){
 	return _gradeExec;
 }
 
-std::string AForm::getName(){
+std::string AForm::getName() const {
 	return _name;
 }
 
-bool AForm::getSigned(){
+bool AForm::getSigned() const {
 	return _signed;
 }
 
@@ -71,7 +71,13 @@ std::ostream& operator<<(std::ostream &out, AForm &AForm)
 	return out;
 }
 
-void execute (Bureaucrat const & executor) const
+void AForm::execute(Bureaucrat const &executor) const
 {
-	// check grades and call executeIT
+	if (getSigned() && executor.getGrade() < _gradeExec)
+		executeConcrete();
+	else
+	{
+		if (!getSigned()) throw FormNotSignedException();
+		if (executor.getGrade() < _gradeExec) throw GradeTooLowException();
+	}
 }

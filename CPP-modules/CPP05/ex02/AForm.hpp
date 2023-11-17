@@ -1,36 +1,36 @@
 #ifndef __AForm_HPP__
 #define __AForm_HPP__
 
-#include <string>
+#include <iostream>
 #include "Bureaucrat.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 
 class Bureaucrat;
 
-class AForm {
+class AForm 
+{
 public:
 	AForm();
 	AForm(std::string name, int gradeSign, int gradeExec);
     AForm(const AForm &cpy);
-    ~AForm();
+    virtual ~AForm();
     AForm& operator=(const AForm &other);
 
-	bool getSigned();
+	bool getSigned() const;
 	int getGradeS();
 	int getGradeE();
-	std::string getName();
+	std::string getName() const;
+
+	virtual void execute(Bureaucrat const &executor) const;
 	
 	void beSigned(const Bureaucrat &bureaucrat);
-	void execute (Bureaucrat const & executor) const;
 
+	class FormNotSignedException : public std::exception {};
 	class GradeTooHighException : public std::exception {};
 	class GradeTooLowException : public std::exception {};
 protected:
 
 	virtual void executeConcrete() const = 0;
-    
+
 private:
 	const std::string _name;
 	bool _signed;

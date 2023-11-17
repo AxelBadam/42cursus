@@ -50,35 +50,33 @@ void Bureaucrat::decrementG (){
 	if (_grade > 150) throw GradeTooLowException();
 }
 
-void Bureaucrat::signAForm(AForm &form)
+void Bureaucrat::signForm(AForm &form) const
 {
 	try
 	{
-		AForm.beSigned(*this);
-		std::cout << _name << " signed " << AForm.getName() << std::endl;
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << std::endl;
 	} 
 	catch (std::exception &e)
 	{
-		std::cout << _name << " couldn't sign " << AForm.getName()
+		std::cout << _name << " couldn't sign " << form.getName()
 		<< " because their rating wasn't sufficient" << std::endl;
 	}		
 }
 
-void Bureaucrat::executeForm(AForm const &form) const
+void Bureaucrat::executeForm(AForm const &form)
 {
 	try
 	{
 		form.execute(*this);
-		std::cout << name << " executed " << form.getName() << std::endl;
+		std::cout << _name << " executed " << form.getName() <<  std::endl;
 	}
-	catch (AForm::FormNotSigned &e)
+	catch (AForm::FormNotSignedException)
 	{
-		std::cout << name << " couldn't execute " << form.getName()
-			<< " as it is not signed." << std::endl;
+		std::cout << "FormNotSignedException Caught" << std::endl;
 	}
-	catch (AForm::GradeTooLowException &e)
+	catch (AForm::GradeTooLowException)
 	{
-		std::cout << name << " couldn't execute " << form.getName()
-			<< " due to their insufficient ranking." << std::endl;
+			std::cout << "GradeTooLowException Caught" << std::endl;
 	}
 }

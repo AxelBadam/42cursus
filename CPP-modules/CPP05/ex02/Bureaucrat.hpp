@@ -21,9 +21,9 @@ public:
 	void incrementG();
 	void decrementG();
 
-	void executeForm(AForm const &form) const;
+	void executeForm(AForm const & form);
 
-	void signAForm(AForm &form);
+	void signForm(AForm &form) const;
 
 	class GradeTooHighException : public std::exception {};
 	class GradeTooLowException : public std::exception {};

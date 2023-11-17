@@ -3,12 +3,14 @@
 
 #include "AForm.hpp"
 
-class RobotomyRequestForm : protected AForm
+class Bureaucrat;
+
+class RobotomyRequestForm : public AForm
 {
 public:
     RobotomyRequestForm(std::string target);
     RobotomyRequestForm(const RobotomyRequestForm &other);
-    ~RobotomyRequestForm();
+    virtual ~RobotomyRequestForm();
     RobotomyRequestForm& operator=(const RobotomyRequestForm &other);
     
 	void executeConcrete() const;
