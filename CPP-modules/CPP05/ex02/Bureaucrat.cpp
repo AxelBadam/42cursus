@@ -50,7 +50,7 @@ void Bureaucrat::decrementG (){
 	if (_grade > 150) throw GradeTooLowException();
 }
 
-void Bureaucrat::signForm(AForm &form) const
+void Bureaucrat:: signForm(AForm &form) const
 {
 	try
 	{
@@ -68,8 +68,8 @@ void Bureaucrat::executeForm(AForm const &form)
 {
 	try
 	{
+		std::cout << _name << " tries to execute " << form.getName() <<  std::endl;
 		form.execute(*this);
-		std::cout << _name << " executed " << form.getName() <<  std::endl;
 	}
 	catch (AForm::FormNotSignedException)
 	{

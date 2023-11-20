@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
 {
@@ -50,16 +50,45 @@ void Bureaucrat::decrementG (){
 	if (_grade > 150) throw GradeTooLowException();
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat:: signForm(AForm &form) const
 {
 	try
 	{
+		if (&form == nullptr)
+			throw std::invalid_argument("form is NULL");
 		form.beSigned(*this);
 		std::cout << _name << " signed " << form.getName() << std::endl;
 	} 
-	catch (std::exception &e)
+	catch (AForm::GradeTooLowException)
 	{
 		std::cout << _name << " couldn't sign " << form.getName()
 		<< " because their rating wasn't sufficient" << std::endl;
-	}	
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+	try
+	{
+		if (&form == nullptr)
+			throw std::invalid_argument("form is NULL");
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() <<  std::endl;
+	}
+	catch (AForm::FormNotSignedException)
+	{
+		std::cout << "FormNotSignedException Caught" << std::endl;
+	}
+	catch (AForm::GradeTooLowException)
+	{
+			std::cout << "GradeTooLowException Caught" << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+			std::cerr << "Exception: " << e.what() << std::endl;
+	}
 }
