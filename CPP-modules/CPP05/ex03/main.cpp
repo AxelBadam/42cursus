@@ -24,6 +24,12 @@ int main()
 	GigaChad.signForm(*random);
 	GigaChad.executeForm(*random);
 
+
+	std::cout << "------------------------" << std::endl;
+
+	PresidentialPardonForm pres;
+	GigaChad.signForm(pres);	
+	GigaChad.executeForm(pres);
 	std::cout << "------------------------" << std::endl;
 
 	Bureaucrat GigaLad("GigaLad", 149);

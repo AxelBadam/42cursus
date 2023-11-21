@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 
+RobotomyRequestForm::RobotomyRequestForm() : _target("default") {}
+
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
 : AForm("RobotomyRequestForm", 72, 45), _target(target) {}
 

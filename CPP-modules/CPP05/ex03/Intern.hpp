@@ -3,7 +3,6 @@
 
 #include "AForm.hpp"
 
-
 class Intern 
 {
 public:

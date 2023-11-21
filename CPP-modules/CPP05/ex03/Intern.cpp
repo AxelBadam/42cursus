@@ -31,11 +31,16 @@ AForm* Intern::makeForm(std::string formName, std::string formTarget)
 	switch (i)
 	{
 		case 0:
+			std::cout << "Intern makes " << args[i] << " form" << std::endl;
 			return new PresidentialPardonForm(formTarget);
 		case 1:
+			std::cout << "Intern makes " << args[i] << " form" << std::endl;		
 			return new RobotomyRequestForm(formTarget);
 		case 2:
+			std::cout << "Intern makes " << args[i] << " form" << std::endl;
 			return new ShrubberyCreationForm(formTarget);
+		case 3:
+			std::cout << "invalid parameter to makeForm" << std::endl;
 	}
 	return NULL;
 }

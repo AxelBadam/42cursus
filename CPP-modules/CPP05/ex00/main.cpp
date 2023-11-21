@@ -5,23 +5,22 @@ int main()
 	try{
 		Bureaucrat bur("Jalmari", 151);
 	}
-	catch(const std::exception& e){
+	catch(Bureaucrat::GradeTooLowException){
 		std::cerr << "Exception caught: Constructor" << std::endl;
-	}	
+	}
 	try
 	{
 		Bureaucrat bur("Jalmari", 1);
 		bur.decrementG();
 	}
-	catch(const std::exception& e){
+	catch(Bureaucrat::GradeTooHighException){
 		std::cerr << "Exception caught: Decrement" << std::endl;
 	}
-	try
-	{
+	try{
 		Bureaucrat bur("Jalmari", 150);
 		bur.incrementG();
 	}
-	catch(const std::exception& e){
+	catch(Bureaucrat::GradeTooLowException){
 		std::cerr << "Exception caught: Increment" << std::endl;
 	}
 
