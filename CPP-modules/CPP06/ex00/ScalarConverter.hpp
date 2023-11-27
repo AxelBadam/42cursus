@@ -3,16 +3,15 @@
 
 #include <iostream>
 
-class ScalarConverter {
-public:
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter &other);
-    ~ScalarConverter();
-    ScalarConverter& operator=(const ScalarConverter &other);
-	static void convert(const std::string &arg);
-    
-private:
-    
+class ScalarConverter 
+{
+	public:
+		static void convert(const std::string &arg);
+	private:
+    	ScalarConverter();
+    	ScalarConverter(const ScalarConverter &other);
+    	~ScalarConverter();
+    	ScalarConverter& operator=(const ScalarConverter &other); 
 };
 
 #endif

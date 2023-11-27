@@ -3,9 +3,11 @@
 int main(int ac, char **av)
 {
 	if (ac != 2)
-		exit (1);
+	{
+		std::cout << "please provide a single argument" << std::endl; 
+		exit (0);
+	}
 	const std::string str = av[1];
-	ScalarConverter converter;
-	converter.convert(str);
+	ScalarConverter::convert(str);
     return 0;
 }
