@@ -19,11 +19,46 @@ ScalarConverter& ScalarConverter::operator=(ScalarConverter const &rhs)
 
 enum Type { CHAR, INT, FLOAT, DOUBLE, INFNAN, INVALID };
 
+static bool isValidString(const std::string &arg)
+{
+    int count_dot = 0;
+
+    for (size_t i = 0; i < arg.length(); ++i) 
+	{
+        if (arg[i] == '.')
+            ++count_dot;
+	}
+    int count_f = 0;
+    for (size_t i = 0; i < arg.length(); ++i) 
+	{
+        if (arg[i] == 'f')
+            ++count_f;
+	}
+	if (count_dot > 1 || count_f > 1)
+		return false;
+
+	if (arg[0] >= '0' && arg[0] <= '9')
+	{	
+		int i = 1;
+		while (arg[i])
+		{
+			if (arg[i] == '.' && arg[i + 1])
+				i++;
+			if ((arg[i] < '0' || arg[i] > '9') && arg[i] != 'f')
+				return false;
+			i++;
+		}
+	}
+	return true;
+}
+
 static Type getType(const std::string& arg) 
 {
+	bool isValid = isValidString(arg);
+
     if (arg.length() == 1 && (arg[0] < '0' || arg[0] > '9'))
         return CHAR;
-    if (arg.find('.') != std::string::npos && arg.back() == 'f')
+    if (arg.find('.') != std::string::npos && arg.back() == 'f' && isValid)
 	{
         try 
 		{
@@ -31,8 +66,8 @@ static Type getType(const std::string& arg)
 			return FLOAT;
 		}
 		catch (std::exception &ia){}
-    } 
-	else if (arg.find('.') != std::string::npos)
+    }
+	else if (arg.find('.') != std::string::npos && isValid)
 	{
         try 
 		{
@@ -41,12 +76,16 @@ static Type getType(const std::string& arg)
 		}
 		catch (std::exception &ia) {}
     }
-	try 
+	else if (isValid)
 	{
-		std::stoi(arg);
-		return INT;
-	}	
-	catch (std::exception &ia) {}
+		try 
+		{
+			std::stoi(arg);
+			return INT;
+		}	
+		catch (std::exception &ia) {}
+	}
+
 	return INVALID;
 }
 
@@ -111,12 +150,13 @@ void ScalarConverter::convert(const std::string &arg)
 			break;
 	}
 
-	if (c > 32 && c < 127 && argType != INFNAN)
-		std::cout << "char: '" << c << "'" << std::endl;
-	else if (argType != INFNAN)
-		std::cout << "char: non displayable" << std::endl;
-	else
+	if (argType == INFNAN || i < 0 || i > 127)
 		std::cout << "char: impossible" << std::endl;
+	else if (c < 33 || c >= 127)
+		std::cout << "char: non displayable" << std::endl;
+	else if (c > 32 && c < 127)
+		std::cout << "char: '" << c << "'" << std::endl;
+
 	
 	if (argType != INFNAN)
 		std::cout << "int: " << i << std::endl;
