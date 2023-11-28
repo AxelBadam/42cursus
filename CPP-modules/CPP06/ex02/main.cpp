@@ -30,25 +30,47 @@ Base * generate(void)
 
 }
 
-void identify(Base* p)
+void identify(Base* p) 
 {
-	if (dynamic_cast<A *>(p))
+    if (dynamic_cast<A *>(p)) {
+        std::cout << "type is A" << std::endl;
+        return;
+    }
+    if (dynamic_cast<B *>(p)) {
+        std::cout << "type is B" << std::endl;
+        return;
+    }
+    if (dynamic_cast<C *>(p)) {
+        std::cout << "type is C" << std::endl;
+        return;
+    }
+    std::cout << "type is unknown" << std::endl;
+}
+
+void identify(Base& p)
+{
+	try{	
+		(void)dynamic_cast<A &>(p);
 		std::cout << "type is A" << std::endl;
-	if (dynamic_cast<B *>(p))
+	}
+	catch (std::bad_cast &e) {}
+	try {
+		(void)dynamic_cast<B &>(p);
 		std::cout << "type is B" << std::endl;
-	if (dynamic_cast<C *>(p))
+	}
+	catch (std::bad_cast &e) {}
+	try {
+		(void)dynamic_cast<C &>(p);
 		std::cout << "type is C" << std::endl;
+	}
+	catch (std::bad_cast &e) {}
 }
 
-/*void identify(Base& p)
-{
-
-}
-*/
 int main()
 {
 	Base *p = generate();
 	identify(p);
+	identify(*p);
 
     return 0;
 }

@@ -1,4 +1,4 @@
-NAME := testi
+NAME := test
 CC := c++
 COMPILE_FLAGS := -std=c++98 -Wall -Wextra -Werror
 SRC := main.cpp Base.cpp
@@ -9,7 +9,7 @@ OBJ := $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	-o $(NAME) $(COMPILE_FLAGS) $(OBJ)
+	$(CC) -o $(NAME) $(COMPILE_FLAGS) $(OBJ)
 
 $(OBJ): $(SRC)
 	$(CC) -c $(COMPILE_FLAGS) $(SRC)
