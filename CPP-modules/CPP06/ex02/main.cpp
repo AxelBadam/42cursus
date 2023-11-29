@@ -10,24 +10,14 @@ Base * generate(void)
     switch (randomChoice) 
 	{
         case 0:
-		{
-			A *classA = new A;
-			return classA;
-		}
+			return new A;
         case 1:
-		{
-            B *classB = new B;
-			return classB;
-		}
+			return new B;
         case 2:
-		{
-			C *classC = new C;
-			return classC;
-		}
+			return new C;
 		default:
 			return NULL;
     }
-
 }
 
 void identify(Base* p) 
@@ -71,6 +61,7 @@ int main()
 	Base *p = generate();
 	identify(p);
 	identify(*p);
+	delete p;
 
     return 0;
 }

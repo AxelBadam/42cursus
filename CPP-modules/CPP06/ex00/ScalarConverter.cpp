@@ -1,7 +1,4 @@
 #include "ScalarConverter.hpp"
-#include <iomanip>
-#include <string>
-#include <limits>
 
 ScalarConverter::ScalarConverter() {}
 
@@ -65,7 +62,7 @@ static Type getType(const std::string& arg)
 			std::stof(arg);
 			return FLOAT;
 		}
-		catch (std::exception &ia){}
+		catch (std::exception &ia) {}
     }
 	else if (arg.find('.') != std::string::npos && isValid)
 	{
@@ -85,7 +82,6 @@ static Type getType(const std::string& arg)
 		}	
 		catch (std::exception &ia) {}
 	}
-
 	return INVALID;
 }
 
@@ -116,7 +112,8 @@ void ScalarConverter::convert(const std::string &arg)
 		argType = INFNAN;
 	}
 	//std::cout << argType << std::endl;
-	// CHAR, INT, FLOAT, DOUBLE, INFNAN, INVALID
+	// CHAR, INT, FLOAT, DOUBLE, INFNAN, INVALID, RANGEF, RANGED
+	int overflow_i = 0;
 	switch (argType)
 	{
 		case 0:
@@ -136,17 +133,22 @@ void ScalarConverter::convert(const std::string &arg)
 			d = static_cast<double>(f);
 			i = static_cast<int>(f);
 			c = static_cast<char>(f);
+			if (f >  2147483647.0f || f < -2147483648.0f)
+				overflow_i = 1;
 			break;
 		case 3:
 			d = std::stod(arg);
 			f = static_cast<float>(d);
 			i = static_cast<int>(d);
-			c = static_cast<char>(d);
+			c = static_cast<char>(d);	
+			if (f > 2147483647.0 || f < -2147483648.0)
+				overflow_i = 1;			
 			break;
 		case 4:
 			break;
 		case 5:
-			std::cout << "invalid input" << std::endl;
+			std::cout << "invalid input, please provide a character or a number (or inf/nan)" << std::endl;
+			exit (1);
 			break;
 	}
 
@@ -157,8 +159,7 @@ void ScalarConverter::convert(const std::string &arg)
 	else if (c > 32 && c < 127)
 		std::cout << "char: '" << c << "'" << std::endl;
 
-	
-	if (argType != INFNAN)
+	if (argType != INFNAN && !overflow_i)
 		std::cout << "int: " << i << std::endl;
 	else
 		std::cout << "int: impossible" << std::endl;
