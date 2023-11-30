@@ -7,7 +7,6 @@
 struct Data
 {
 	std::string str;
-	int i;
 };
 
 class Serializer {

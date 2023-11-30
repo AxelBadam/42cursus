@@ -64,7 +64,7 @@ static Type getType(const std::string& arg)
 		}
 		catch (std::exception &ia) {}
     }
-	else if (arg.find('.') != std::string::npos && isValid)
+	else if (arg.find('.') != std::string::npos && arg.find('f') == std::string::npos && isValid)
 	{
         try 
 		{
@@ -73,7 +73,7 @@ static Type getType(const std::string& arg)
 		}
 		catch (std::exception &ia) {}
     }
-	else if (isValid)
+	else if (isValid && arg.find('f') == std::string::npos && arg.find('.') == std::string::npos)
 	{
 		try 
 		{
@@ -93,26 +93,20 @@ void ScalarConverter::convert(const std::string &arg)
 	char 	c = 0;
 
 	Type argType = getType(arg);
-	if (arg.compare("-inff") == 0 || arg.compare("-inf") == 0)
+	if (arg.compare("-inff") == 0 || arg.compare("+inff") == 0 || arg.compare("nanf") == 0)
 	{
-		f = -std::numeric_limits<float>::infinity();
-		d = -std::numeric_limits<double>::infinity();
+		f = std::stof(arg);
+		d = static_cast<double>(f);
 		argType = INFNAN;
 	}
-	else if (arg.compare("+inff") == 0 || arg.compare("+inf") == 0)
+	else if (arg.compare("-inf") == 0 || arg.compare("+inf") == 0 || arg.compare("nan") == 0)
 	{
-		f = std::numeric_limits<float>::infinity();
-		d = std::numeric_limits<double>::infinity();
-		argType = INFNAN;
-	}
-	else if (arg.compare("nanf") == 0 || arg.compare("nan") == 0)
-	{
-		f = std::numeric_limits<float>::quiet_NaN();
-		d = std::numeric_limits<double>::quiet_NaN();
+		d = std::stod(arg);
+		f = static_cast<float>(d);
 		argType = INFNAN;
 	}
 	//std::cout << argType << std::endl;
-	// CHAR, INT, FLOAT, DOUBLE, INFNAN, INVALID, RANGEF, RANGED
+	// CHAR, INT, FLOAT, DOUBLE, INFNAN, INVALID
 	int overflow_i = 0;
 	switch (argType)
 	{
@@ -147,7 +141,7 @@ void ScalarConverter::convert(const std::string &arg)
 		case 4:
 			break;
 		case 5:
-			std::cout << "invalid input, please provide a character or a number (or inf/nan)" << std::endl;
+			std::cout << "please provide: char, int, float or double (or inf/nan)" << std::endl;
 			exit (1);
 			break;
 	}
