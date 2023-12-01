@@ -10,9 +10,10 @@ public:
     Array(unsigned int n);
     Array(const Array& other);
     Array &operator=(const Array &rhs);
+    T &operator[](unsigned int index) const;
     ~Array();
 	size_t size() const;
-
+    
 private:
     T* arr;
 	size_t arr_size;
@@ -37,24 +38,48 @@ Array<T>::Array(const Array& other)
 }
 
 template <typename T>
-Array<T>& Array<T>::operator=(const Array &rhs) {
-    if (this != &rhs) 
-	{
-        // assignment operator implementation
-        // Remember to handle self-assignment and deep copy
-    }
-    return *this;
-}
-
-template <typename T>
 Array<T>::~Array() {
     delete[] arr;
 }
 
 template <typename T>
-size_t Array<T>::size() const
-{
+size_t Array<T>::size() const{
 	return arr_size;
+}
+
+template <typename T>
+Array<T>& Array<T>::operator=(const Array &rhs) {
+    if (this != &rhs)
+	{
+        if (arr)
+            delete[] arr;
+        arr = new T[rhs.size()];
+        for (size_t i = 0; i < rhs.size(); i++)
+            arr[i] = rhs.arr[i];
+    }
+    return *this;
+}
+
+template<typename T>
+T &Array<T>::operator[](unsigned int index) const
+{
+    if (index >= arr_size)
+        throw std::out_of_range("Index out of range");
+    return arr[index];
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const Array<T>& array)
+{
+    os << "{";
+    for (size_t i = 0; i < array.size(); i++)
+    {
+        os << array[i];
+        if (i < array.size() - 1)
+            os << ", ";
+    }
+    os << "}";
+    return os;
 }
 
 #endif
