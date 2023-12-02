@@ -19,6 +19,7 @@ private:
 	size_t arr_size;
 };
 
+
 template <typename T>
 Array<T>::Array() : arr(NULL), arr_size(0) {}
 
@@ -28,18 +29,16 @@ Array<T>::Array(unsigned int n) : arr(new T[n]), arr_size(n) {}
 template <typename T>
 Array<T>::Array(const Array& other)
 {	
-	if (arr_size > 0)
-	{
-		this->arr_size = other.arr_size;
-		this->arr = new T[arr_size];
-		for (size_t i = 0; i < arr_size; i++)
-			arr[i] = other.arr[i];
-	}
+	arr_size = other.arr_size;
+	arr = new T[other.arr_size];
+	for (size_t i = 0; i < arr_size; i++)
+		arr[i] = other.arr[i];
 }
 
 template <typename T>
 Array<T>::~Array() {
-    delete[] arr;
+    if (arr)
+		delete[] arr;
 }
 
 template <typename T>
