@@ -20,7 +20,7 @@ class Span
 		void myAssign(Iterator begin, Iterator end) 
 		{
     		for (Iterator it = begin; it != end; ++it)
-       			addNumber(*it); // Add each element from the range to the vector
+       			addNumber(*it);
    		}
 
         void		addNumber(int n);

@@ -35,27 +35,30 @@ int				Span::getNum(int i)
 {
 	if (i < (int)_size)
 		return (_numbers[i]);
-	else
-		return 0;
+	return 0;
 }
 
 unsigned int Span::shortestSpan() const
-{
+{	
+	if (_size < 2)
+		throw std::exception();
 	std::vector<int> tmp(_numbers);
 	std::sort(tmp.begin(), tmp.end());
 	unsigned int tmp_size = tmp.size();
-	unsigned int store_span = *std::max_element(_numbers.begin(), _numbers.end());
+	unsigned int span_stored = *std::max_element(_numbers.begin(), _numbers.end());
 	for (unsigned int i = 0; i < tmp_size - 1; i++)
 	{
-		unsigned int span= std::abs(tmp[i] - tmp[i + 1]);
-		if (span < store_span)
-			store_span = span;
+		unsigned int span = std::abs(tmp[i] - tmp[i + 1]);
+		if (span < span_stored)
+			span_stored = span;
 	}
-	return store_span;
+	return span_stored;
 }
 
 unsigned int Span::longestSpan() const
 {
+	if (_size < 2)
+		throw std::exception();
 	return *std::max_element(_numbers.begin(), _numbers.end()) 
 		- *std::min_element(_numbers.begin(), _numbers.end());
 }
