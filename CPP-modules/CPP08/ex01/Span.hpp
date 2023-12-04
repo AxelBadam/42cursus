@@ -16,11 +16,16 @@ class Span
         ~Span();
         Span	&operator=( const Span &s );
 
-        void		fillNumbers();
+        template <typename Iterator>
+		void myAssign(Iterator begin, Iterator end) 
+		{
+    		for (Iterator it = begin; it != end; ++it)
+       			addNumber(*it); // Add each element from the range to the vector
+   		}
 
         void		addNumber(int n);
-        long int	shortestSpan();
-        long int	longestSpan();
+       	unsigned int	shortestSpan() const;
+        unsigned int	longestSpan() const;
 
         unsigned int	size( void );
         int				getNum( int i );
