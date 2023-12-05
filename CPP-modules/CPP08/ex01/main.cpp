@@ -25,7 +25,6 @@ int main()
 	Span bigOne = Span(size);
 	for (int i = 0; i < size; i++)
 		biggie[i] = rand() % 100000;
-	
 
 	bigOne.myAssign(biggie.begin(), biggie.end());
 	
@@ -33,9 +32,8 @@ int main()
 	{
 		int j = bigOne.getNum(i);
 		std::cout << "{" << j << "} ";
-	}
-	std::cout << std::endl;
 
+	std::cout << std::endl;
 	try {
 		std::cout << bigOne.shortestSpan() << std::endl;
 	}
