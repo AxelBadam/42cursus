@@ -1,15 +1,11 @@
 #include "iter.hpp"
 
-
-
 int main()
 {
-	char arr[4] = "acb";
+	const char arr[4] = "acb";
 	int length = 3;
 
-	std::cout << arr << std::endl;
-	::iter(arr, length, func);
-	std::cout << arr << std::endl;
+	iter(arr, length, funcC<const char>);
 
 	std::cout << "-----------------" << std::endl;
 
@@ -19,7 +15,7 @@ int main()
 	for (int i = 0; i < length_i; i++)
 		std::cout << arr_i[i] << std::endl;
 
-	::iter(arr_i, length_i, func);
+	iter(arr_i, length_i, func<int>);
 
 	for (int i = 0; i < length_i; i++)
 		std::cout << arr_i[i] << std::endl;
@@ -32,7 +28,7 @@ int main()
 	for (int i = 0; i < length_i; i++)
 		std::cout << arr_f[i] << std::endl;
 
-	::iter(arr_f, lenght_f, func);
+	iter(arr_f, lenght_f, func<float>);
 
 	for (int i = 0; i < lenght_f; i++)
 		std::cout << arr_f[i] << std::endl;    

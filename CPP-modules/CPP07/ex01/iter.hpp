@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 template <typename T>
 void func(T &arg)
 {
@@ -10,12 +11,17 @@ void func(T &arg)
 }
 
 template <typename T>
-void iter(T *arr, int lenght, void (*func)(T &))
+void funcC(T const &arg)
 {
-	for (int i = 0; i < lenght; i++){
-		func(arr[i]);
-	}
+	std::cout << arg << std::endl;
 }
 
+template <typename T, typename F>
+void iter(T *arr, int lenght, F f)
+{
+	for (int i = 0; i < lenght; i++){
+		f(arr[i]);
+	}
+}
 
 #endif

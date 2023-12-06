@@ -19,7 +19,6 @@ private:
 	size_t arr_size;
 };
 
-
 template <typename T>
 Array<T>::Array() : arr(NULL), arr_size(0) {}
 
@@ -52,8 +51,9 @@ Array<T>& Array<T>::operator=(const Array &rhs) {
 	{
         if (arr)
             delete[] arr;
-        arr = new T[rhs.size()];
-        for (size_t i = 0; i < rhs.size(); i++)
+		arr_size = rhs.arr_size;
+        arr = new T[arr_size];
+        for (size_t i = 0; i < arr_size; i++)
             arr[i] = rhs.arr[i];
     }
     return *this;
@@ -62,7 +62,7 @@ Array<T>& Array<T>::operator=(const Array &rhs) {
 template<typename T>
 T &Array<T>::operator[](unsigned int index) const
 {
-    if (index >= arr_size)
+    if (index >= arr_size || index < 0)
         throw std::out_of_range("Index out of range");
     return arr[index];
 }
