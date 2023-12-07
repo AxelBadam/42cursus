@@ -2,6 +2,7 @@
 
 void more_test()
 {
+	// assigment and copy
 	MutantStack<int> testMStack;
 	MutantStack<int> mStack(testMStack);
 	mStack = testMStack;
@@ -81,6 +82,5 @@ int main()
 	if (foundIt != mstack.end())
    	 	std::cout << "Element found: " << *foundIt << std::endl;
 	more_test();
-
 	return 0;
 }

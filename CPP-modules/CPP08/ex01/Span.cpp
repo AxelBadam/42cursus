@@ -9,7 +9,7 @@ Span::Span( unsigned int n ): _size(n) {}
 
 Span::~Span() {}
 
-Span	&Span::operator=(const Span &rhs)
+Span &Span::operator=(const Span &rhs)
 {
 	if (this != &rhs)
 	{
@@ -19,7 +19,7 @@ Span	&Span::operator=(const Span &rhs)
 	return (*this);
 }
 
-void	Span::addNumber(int n)
+void Span::addNumber(int n)
 {
     if (_numbers.size() < _size)
         _numbers.push_back(n);
@@ -27,11 +27,11 @@ void	Span::addNumber(int n)
         throw std::exception();
 }
 
-unsigned int	Span::size() {
+unsigned int Span::size() {
 	return (_size);
 }
 
-int				Span::getNum(int i)
+int	Span::getNum(int i)
 {
 	if (i < (int)_size)
 		return (_numbers[i]);
@@ -45,7 +45,7 @@ unsigned int Span::shortestSpan() const
 	std::vector<int> tmp(_numbers);
 	std::sort(tmp.begin(), tmp.end());
 	unsigned int tmp_size = tmp.size();
-	unsigned int span_stored = *std::max_element(_numbers.begin(), _numbers.end());
+	unsigned int span_stored = *std::max_element(tmp.begin(), tmp.end());
 	for (unsigned int i = 0; i < tmp_size - 1; i++)
 	{
 		unsigned int span = std::abs(tmp[i] - tmp[i + 1]);

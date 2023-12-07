@@ -2,15 +2,6 @@
 
 int main()
 {
-	std::array<int, 5> arr = {1, 2, 3, 4, 5};
-	try	{
-		std::cout << "Number to find = " << easyfind(arr, 3) << std::endl;
-		easyfind(arr, 9);
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << ": Number not found." << std::endl;
-	}
-
 	std::vector<int> vec;
 	vec.push_back(1);
 	vec.push_back(2);
@@ -19,7 +10,6 @@ int main()
 	vec.push_back(5);
 
 	try	{
-
 		std::cout << "Found number " << easyfind(vec, 3) << std::endl;
 	}
 	catch (std::exception &e) {
@@ -37,6 +27,17 @@ int main()
 	catch (std::exception &e) {
 		std::cout << "Number not found." << std::endl;
 	}
+	
+	const int arr[] = {1, 2, 3, 4, 5};
+    const std::vector<int> vecC(arr, arr + 5);
+
+	try	{
+		std::cout << "Found number " << easyfind(vecC, 3) << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << "Number not found." << std::endl;
+	}
+
 
     return 0;
 }

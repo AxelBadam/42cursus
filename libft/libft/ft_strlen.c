@@ -6,7 +6,7 @@
 /*   By: atuliara <atuliara@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:11:32 by atuliara          #+#    #+#             */
-/*   Updated: 2022/11/08 15:00:33 by atuliara         ###   ########.fr       */
+/*   Updated: 2023/12/02 12:21:21 by atuliara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ size_t	ft_strlen(const char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	i++;
+		i++;
 	return (i);
 }

@@ -13,11 +13,12 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: out of range" << std::endl;
+        std::cout << "Exception: out of bounds" << std::endl;
     }
 	std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
 	
+	// change size to whatever
 	int size = 0;
 	std::vector<int> biggie(size);
 	srand(time(NULL));
@@ -32,7 +33,7 @@ int main()
 	{
 		int j = bigOne.getNum(i);
 		std::cout << "{" << j << "} ";
-
+	}
 	std::cout << std::endl;
 	try {
 		std::cout << bigOne.shortestSpan() << std::endl;

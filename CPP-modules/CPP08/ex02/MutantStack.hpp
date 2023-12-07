@@ -4,7 +4,9 @@
 #include <stack>
 #include <list>
 #include <iostream>
- 
+
+//stack uses std::deque container by default
+
 template<typename T>
 class MutantStack : public std::stack<T>
 {
@@ -30,8 +32,8 @@ MutantStack<T>::~MutantStack() {}
 template<typename T>
 MutantStack<T>	&MutantStack<T>::operator=(MutantStack const &instance) 
 {
-	if (this->c != instance.c)
-		this->c = instance.c;
+    if (this != &instance)
+        std::stack<T>::operator=(instance);
 	return *this;
 }
 
