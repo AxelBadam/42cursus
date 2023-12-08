@@ -12,6 +12,7 @@ int main(int ac, char **av)
 	const std::string inputValues = av[1];
 	BitcoinExchange obj;
 	obj.parseData(inputValues, interestRates);
+	obj.printResults();
 	
     return 0;
 }

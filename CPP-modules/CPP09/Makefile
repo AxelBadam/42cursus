@@ -1,7 +1,7 @@
 NAME := test
 CC := c++
 COMPILE_FLAGS := -std=c++98 -Wall -Wextra -Werror
-SRC := main.cpp
+SRC := main.cpp BitcoinExchange.cpp
 OBJ := $(SRC:.cpp=.o)
 
 .PHONY: all clean fclean re
