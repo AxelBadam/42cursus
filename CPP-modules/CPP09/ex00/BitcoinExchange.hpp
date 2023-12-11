@@ -7,6 +7,7 @@
 #include <fstream>
 
 
+
 class BitcoinExchange 
 {
 	public:
@@ -24,7 +25,8 @@ class BitcoinExchange
 		void parseInput(const std::string &input);
 		void multiplyMapData();
 		void findClosestDate();
-		std::multimap<std::string, double> _result;
+		std::string	checkDate(std::string &date);
+
 		std::multimap<std::string, double> _inputValues;
 		std::multimap<std::string, double> _exchangeRates;
 };
