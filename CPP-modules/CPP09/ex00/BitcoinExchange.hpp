@@ -25,10 +25,10 @@ class BitcoinExchange
 		void parseInput(const std::string &input);
 		void multiplyMapData();
 		void findClosestDate();
-		std::string	checkDate(std::string &date);
+		std::multimap<std::string, float>::const_iterator findDate(const std::string &date) const;
 
-		std::multimap<std::string, double> _inputValues;
-		std::multimap<std::string, double> _exchangeRates;
+		std::multimap<std::string, float> _inputValues;
+		std::multimap<std::string, float> _exchangeRates;
 };
 
 #endif

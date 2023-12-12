@@ -19,7 +19,6 @@ BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const &rhs)
     return (*this);
 }
 
-
 static std::string rtrim(const std::string& str)
 {
     size_t end = str.find_last_not_of(" \t\n\r\f\v");
@@ -28,21 +27,19 @@ static std::string rtrim(const std::string& str)
 
 void BitcoinExchange::parseRates(const std::string &rates)
 {
-    std::ifstream file(rates.c_str()); // Open the file
+    std::ifstream file(rates.c_str());
     if (!file.is_open())
 	{
         std::cout << "Failed to open file: " << rates << std::endl;
         return;
     }
     std::string line, date;
-	double value;
+	float value;
     while (std::getline(file, line)) 
 	{
 		std::istringstream iss(line);
 		if (std::getline(iss, date, ','))
 		{
-			
-			std::cout << "date before parse " << date << std::endl;
 			iss >> value;
 			_exchangeRates.insert(std::make_pair(date, value));
 		}
@@ -50,31 +47,7 @@ void BitcoinExchange::parseRates(const std::string &rates)
     file.close();
 }
 
-std::string BitcoinExchange::checkDate(std::string &date)
-{
-
-	// std::multimap<std::string, double>::iterator itDateA = _exchangeRates.begin();
-	// std::cout << itDateA->first << std::endl;
-	// std::multimap<std::string, double>::iterator itDate = _exchangeRates.lower_bound(date);
-	
-	// std::cout << "input date is " << date << std::endl;
-	// std::cout << "iterator =  " << itDate->first << std::endl;
-	// if (itDate == _exchangeRates.end())
-	// {
-
-	//  	if (itDate == _exchangeRates.begin() || itDate == _exchangeRates.end()) 
-	// 	{
-    //         std::cout << "No earlier date available" << std::endl;
-    //         return date;
-    //     }	
-	// 	std::cout << itDate->first << std::endl;
-	// 	while (itDate != _exchangeRates.begin() && itDate->first == date)
-	// 		itDate--;
-	// 	return itDate->first;
-	// }
-	
-	return date;
-}
+//if the first row exist or not?
 
 void BitcoinExchange::parseInput(const std::string &input)
 {
@@ -84,30 +57,18 @@ void BitcoinExchange::parseInput(const std::string &input)
         return;
     }
     std::string line, date;
-	double value;
+	float value;
     while (std::getline(file, line))
 	{
 		std::istringstream iss(line);
 		if (std::getline(iss, date, '|'))
 		{
-			date = rtrim(date);
-			date = checkDate(date);
-			std::cout << "Inputdate before parse " << date << std::endl;
+			date = rtrim(date); // does this do anything?
 			iss >> value;
     		_inputValues.insert(std::make_pair(date, value));
 		}
     }
     file.close();
-}
-
-void BitcoinExchange::findClosestDate()
-{
-
-}
-
-void BitcoinExchange::multiplyMapData()
-{
-	
 }
 
 void BitcoinExchange::parseData(const std::string &inputValues, const std::string &exchangeRates)
@@ -126,30 +87,112 @@ void BitcoinExchange::parseData(const std::string &inputValues, const std::strin
 	}
 }
 
-void BitcoinExchange::printResults() const
+static bool isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+static int getDaysInMonth(int month, int year) 
 {
-	std::map<std::string, double>::const_iterator itRates = _exchangeRates.begin();
-	std::map<std::string, double>::const_iterator itInput = _inputValues.begin();
-
-	itInput++;
-	itRates++;
-	while (itInput != _inputValues.end())
+    switch (month) 
 	{
-		// std::cout << itInput->first << std::endl;
-		// std::cout << itRates->first << std::endl;
-		itRates = _exchangeRates.find(itInput->first);
+        case 2:
+            return isLeapYear(year) ? 29 : 28;
+        case 4: case 6: case 9: case 11:
+            return 30;
+        default:
+            return 31;
+    }
+}
 
-		if (itRates != _exchangeRates.end())
+static bool isDateValid(const std::string &date)
+{
+
+    if (date.length() != 10)
+	{
+		std::cout << "Error: bad input => " << date << std::endl;
+		return false;
+	}
+        
+    for (size_t i = 0; i < 10; ++i)
+	{
+        if (i == 4 || i == 7)
 		{
-			std::cout << "Key: " << itInput->first << ", Value: " << itInput->second << " => " << itInput->second * itRates->second << std::endl;
-		}
+            if (date[i] != '-')
+            {
+				std::cout << "Error: bad input => " << date << std::endl;
+				return false;
+			}
+        } 
 		else
-			std::cout << "find closest" << std::endl;
-		itInput++;
+		{
+            if (!std::isdigit(date[i]))
+            {
+				std::cout << "Error: bad input => " << date << std::endl;
+				return false;
+			}
+        }
     }
 
-	// std::cout << "Rates from database: " << std::endl;
-	// for (std::map<std::string, double>::const_iterator it = _exchangeRates.begin(); it != _exchangeRates.end(); ++it) {
-    //     std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
-    // }
+// need handle exception?
+    int year = std::atoi(date.substr(0, 4).c_str());
+    int month = std::atoi(date.substr(5, 2).c_str());
+    int day = std::atoi(date.substr(8, 2).c_str());
+
+    if (month < 1 || month > 12)
+    {
+		std::cout << "Error: bad input => " << date << std::endl;
+		return false;
+	}
+
+    if (day < 1 || day > getDaysInMonth(month, year))
+    {
+		std::cout << "Error: bad input => " << date << std::endl;
+		return false;
+	}
+
+	const std::string startDate = "2009-01-02";
+    const std::string endDate = "2022-03-29";
+    if (date < startDate && date > endDate)
+    {
+		std::cout << "Error: bad input => " << date << std::endl;
+		return false;
+	}
+	return true;
+}
+
+static bool isValueValid(const float &value){
+	if (value < 0 || value > 1000)
+	{
+		std::cout << "Error: value must be between 0-1000" << std::endl;
+		return false;
+	}
+	return true;
+}
+
+std::multimap<std::string, float>::const_iterator BitcoinExchange::findDate(const std::string &date) const
+{
+	std::multimap<std::string, float>::const_iterator it = _exchangeRates.lower_bound(date);
+	const std::string higherOrEqualRate = it->first;
+
+	while (it != _exchangeRates.begin() && it->first == higherOrEqualRate && higherOrEqualRate != date)
+		it--;
+	return it;
+}
+
+void BitcoinExchange::printResults() const
+{
+	std::multimap<std::string, float>::const_iterator itRates;
+	std::multimap<std::string, float>::const_iterator itInput = _inputValues.begin();
+
+	while (itInput != _inputValues.end())
+	{
+		itRates = findDate(itInput->first);
+		if (itInput != _inputValues.end() && isDateValid(itInput->first)
+		 && isValueValid(itInput->second))
+		{
+			std::cout << "Key: " << itInput->first << ", Value: " << itInput->second <<
+			 				" => " << itInput->second * itRates->second << std::endl;
+		}
+		itInput++;
+    }
 }

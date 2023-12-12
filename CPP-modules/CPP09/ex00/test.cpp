@@ -2,7 +2,8 @@
 #include <map>
 #include <string>
 
-int main() {
+int main() 
+{
     // Creating a multimap with date strings as keys and some numeric values
     std::multimap<std::string, int> dateMultimap;
     dateMultimap.insert(std::make_pair("2021-01-01", 10));
