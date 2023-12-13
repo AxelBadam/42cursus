@@ -1,7 +1,7 @@
 NAME := RPN
 CC := c++
 COMPILE_FLAGS := -std=c++98 -Wall -Wextra -Werror
-SRC := main.cpp BitcoinExchange.cpp
+SRC := main.cpp RPN.cpp
 OBJ := $(SRC:.cpp=.o)
 
 .PHONY: all clean fclean re

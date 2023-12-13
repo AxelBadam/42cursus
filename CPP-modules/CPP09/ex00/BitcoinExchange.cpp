@@ -2,13 +2,13 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
+BitcoinExchange::~BitcoinExchange() {}
+
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &cpy)
 {
     _exchangeRates = cpy._exchangeRates;
 	_inputValues = cpy._inputValues;
 }
-
-BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const &rhs)
 {
@@ -122,7 +122,7 @@ static void checkFirstLine(std::ifstream &file)
 				return;
 		}
 	}
-	std::cerr << "Empty file or incorrect format in first line: " << line << std::endl;
+	std::out << "Empty file or incorrect format in first line: " << line << std::endl;
     return;
 }
 
@@ -135,7 +135,7 @@ void BitcoinExchange::parseRates(const std::string &rates)
 		throw std::exception();
     }
     std::string line, date;
-	float value;
+	float value;                  
     while (std::getline(file, line)) 
 	{
 		std::istringstream iss(line);
