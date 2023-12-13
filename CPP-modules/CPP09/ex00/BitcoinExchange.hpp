@@ -16,19 +16,16 @@ class BitcoinExchange
 		~BitcoinExchange();
 		BitcoinExchange& operator=(const BitcoinExchange &other);
 
-		void parseData(const std::string &inputValues, const std::string &interestRates);
-		
+		void parseAllData(const std::string &inputValues, const std::string &interestRates);
 		void printResults() const;
 
 	private:
-		void parseRates(const std::string &rates);
-		void parseInput(const std::string &input);
-		void multiplyMapData();
-		void findClosestDate();
-		std::multimap<std::string, float>::const_iterator findDate(const std::string &date) const;
+		void												parseRates(const std::string &rates);
+		void												parseInput(const std::string &input);
+		std::multimap<std::string, float>::const_iterator 	findDate(const std::string &date) const;
 
-		std::multimap<std::string, float> _inputValues;
-		std::multimap<std::string, float> _exchangeRates;
+		std::multimap<std::string, float> 					_inputValues;
+		std::multimap<std::string, float> 					_exchangeRates;
 };
 
 #endif

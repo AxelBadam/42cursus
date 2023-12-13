@@ -11,7 +11,7 @@ int main(int ac, char **av)
 	const std::string interestRates = "data.csv";
 	const std::string inputValues = av[1];
 	BitcoinExchange obj;
-	obj.parseData(inputValues, interestRates);
+	obj.parseAllData(inputValues, interestRates);
 	obj.printResults();
 	
     return 0;
