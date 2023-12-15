@@ -22,13 +22,13 @@ int main()
 
 	std::cout << "-----------------" << std::endl;
 
-	float arr_f[4] = {1.3f, 2.2f, -3.f, 4.0f};
+	float const arr_f[4] = {1.3f, 2.2f, -3.f, 4.0f};
 	int lenght_f = 4;
 
 	for (int i = 0; i < length_i; i++)
 		std::cout << arr_f[i] << std::endl;
 
-	iter(arr_f, lenght_f, func<float>);
+	iter(arr_f, lenght_f, funcC<const float>);
 
 	for (int i = 0; i < lenght_f; i++)
 		std::cout << arr_f[i] << std::endl;    

@@ -122,7 +122,7 @@ static void checkFirstLine(std::ifstream &file)
 				return;
 		}
 	}
-	std::out << "Empty file or incorrect format in first line: " << line << std::endl;
+	std::cout << "Empty file or incorrect format in first line: " << line << std::endl;
     return;
 }
 
