@@ -1,4 +1,4 @@
-NAME := RPN
+NAME := PmergeMe
 CC := c++
 COMPILE_FLAGS := -std=c++98 -Wall -Wextra -Werror
 SRC := main.cpp PmergeMe.cpp
