@@ -1,4 +1,4 @@
-NAME := RPN
+NAME := btc
 CC := c++
 COMPILE_FLAGS := -std=c++98 -Wall -Wextra -Werror
 SRC := main.cpp BitcoinExchange.cpp

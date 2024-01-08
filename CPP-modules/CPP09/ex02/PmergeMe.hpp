@@ -8,7 +8,6 @@
 #include <vector>
 #include <deque>
 #include <sys/time.h>
-#include <unistd.h>
 #include <algorithm>
 
 class PmergeMe 
@@ -51,7 +50,7 @@ class PmergeMe
 			std::string token;
 			T res;
 
-			while (sequenceStream >> token) 
+			while (sequenceStream >> token)
 			{
 				if (isValidNumber<T>(token)) 
 				{
@@ -70,7 +69,7 @@ class PmergeMe
 		}
 
 		template<typename T>
-		static void printContainer(const T& container) 
+		static void printContainer(const T& container)
 		{
 			for (typename T::const_iterator it = container.begin(); it != container.end(); ++it)
 				std::cout << *it << " ";

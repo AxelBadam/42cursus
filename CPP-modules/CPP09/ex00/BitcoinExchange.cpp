@@ -15,6 +15,8 @@ BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const &rhs)
     if (this != &rhs)
     {
         _exchangeRates.clear();
+		_inputValues.clear();
+		_inputValues = rhs._inputValues;
 		_exchangeRates = rhs._exchangeRates;
     }
     return (*this);
@@ -94,7 +96,8 @@ static bool isDateValid(const std::string &date)
 	return true;
 }
 
-static bool isValueValid(const float &value){
+static bool isValueValid(const float &value)
+{
 	if (value < 0 || value > 1000)
 	{
 		std::cout << "Error: value must be between 0-1000" << std::endl;
@@ -177,13 +180,13 @@ void BitcoinExchange::parseAllData(const std::string &inputValues, const std::st
 		parseInput(inputValues);
 	}
 	catch (std::exception &e){
-		std::cout << "Invalid input" << std::endl;
+		std::cout << "Invalid input: Input" << std::endl;
 	}
 	try {
 		parseRates(exchangeRates);
 	}
 	catch (std::exception &e){
-		std::cout << "Invalid input" << std::endl;
+		std::cout << "Invalid input: Rates" << std::endl;
 	}
 }
 
@@ -206,8 +209,7 @@ void BitcoinExchange::printResults() const
 	{
 		itRates = findDate(itInput->first);
 		if (itInput != _inputValues.end() && isDateValid(itInput->first)
-		 && isValueValid(itInput->second) && isDateValid(itRates->first)
-		 && isValueValid(itRates->second))
+		 && isValueValid(itInput->second) && isDateValid(itRates->first))
 		{
 			std::cout << "Key: " << itInput->first << ", Value: " << itInput->second <<
 			 				" => " << itInput->second * itRates->second << std::endl;

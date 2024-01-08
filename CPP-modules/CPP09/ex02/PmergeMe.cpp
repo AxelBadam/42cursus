@@ -126,5 +126,4 @@ void PmergeMe::timeAndSort(int ac, char **av)
 		<< " elements with std::vector:\t" << timeVec << " microseconds" << std::endl;
 	std::cout << "Time to process a range of " << deque.size()
 	<< " elements with std::deque: \t" << timeDeque << " microseconds" << std::endl;
-	// std::cout << std::endl;
 }

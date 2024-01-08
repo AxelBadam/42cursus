@@ -13,6 +13,5 @@ int main(int ac, char **av)
 	BitcoinExchange obj;
 	obj.parseAllData(inputValues, interestRates);
 	obj.printResults();
-	
     return 0;
 }
