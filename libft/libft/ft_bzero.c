@@ -6,7 +6,7 @@
 /*   By: atuliara <atuliara@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 12:12:44 by atuliara          #+#    #+#             */
-/*   Updated: 2022/11/07 13:10:52 by atuliara         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:47:27 by atuliara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void	ft_bzero(void *s, size_t n)
 		*ptr++ = 0;
 		n--;
 	}
-	return (*s);
 }
